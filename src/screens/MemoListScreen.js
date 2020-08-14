@@ -7,7 +7,7 @@ import CircleButton from "../elements/CircleButton";
 class  MemoListScreen extends React.Component {
   render() {
     return(
-      <View sytle={styles.container}>
+      <View style={ styles.container }>
 
         <MemoList />
 
@@ -18,10 +18,13 @@ class  MemoListScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  
   container: {
-    width: "100%",
+    // 画面いっぱいに表示的な？ <- flex
     flex: 1,
+    width: "100%",
   },
+
 });
 
 export default MemoListScreen;
