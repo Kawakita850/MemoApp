@@ -5,7 +5,7 @@ import Appbar from "./src/components/Appbar";
 
 import MemoListScreen from "./src/screens/MemoListScreen";
 import MemoDetailScreen from "./src/screens/MemoDetailScreen";
-
+import MemoEditScreen from "./src/screens/MemoEditScreen";
 
 // export default class App extends React.Componet {
 //   render() {
@@ -23,7 +23,7 @@ export default function App() {
 
       <Appbar />
 
-      <MemoDetailScreen />
+      <MemoEditScreen />
 
     </View>
   );
