@@ -9,20 +9,21 @@ class  MemoListScreen extends React.Component {
     return(
       <View style={ styles.container }>
 
-        <MemoList />
+        <MemoList navigation={ this.props.navigation } />
 
-        <CircleButton>+</CircleButton>
+        <CircleButton onPress={() => { this.props.navigation.navigate("MemoEdit") }}>+</CircleButton>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
+
   container: {
     // 画面いっぱいに表示的な？ <- flex
     flex: 1,
     width: "100%",
+    backgroundColor: "#fffdf6",
   },
 
 });

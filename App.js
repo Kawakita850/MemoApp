@@ -1,5 +1,6 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import firebase from "firebase";
 
 import Appbar from "./src/components/Appbar";
 
@@ -9,36 +10,42 @@ import MemoEditScreen from "./src/screens/MemoEditScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import SignupScreen from "./src/screens/SignupScreen";
 
-// export default class App extends React.Componet {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Hello!</Text>
-//       </View>
-//     );
-//   }
-// }
+import ENV from "./env.json";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey:             ENV.FIREBASE_API_KEY,
+  authDomain:         ENV.FIREBASE_AUTHDOMAIN,
+  databaseURL:        ENV.FIREBASE_DB_URL,
+  projectId:          ENV.FIREBASE_PRJ_ID,
+  storageBucket:      ENV.FIREBASE_STORAGE,
+  messagingSenderId:  ENV.FIREBASE_SENDER_ID,
+  appId:              ENV.FIREBASE_APP_ID,
+  measurementId:      ENV.FIREBASE_MEASUREMENT_ID,
+};
 
-      <Appbar />
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-      <SignupScreen />
 
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    // 画面いっぱいに表示的な？ <- flex
-    flex: 1,
-    backgroundColor: '#fffdf6',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 60,
-  },
-
+const App = createStackNavigator({
+  Login:      { screen: LoginScreen },
+  Signup:     { screen: SignupScreen },
+  Home:       { screen: MemoListScreen },
+  MemoDetail: { screen: MemoDetailScreen },
+  MemoEdit:   { screen: MemoEditScreen },
+}, {
+  defaultNavigationOptions: {
+    headerTitle: "MEMOT",
+    headerTintColor: "#fff",
+    headerBackTitle: " ",
+    headerStyle: {
+      backgroundColor: "#265366",
+    },
+    headerTitleStyle: {
+      color: "#fff",
+    },
+  }
 });
+
+export default createAppContainer(App);

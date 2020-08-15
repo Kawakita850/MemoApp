@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, TouchableHighlight } from "react-native";
 
 class CircleButton extends React.Component {
   render() {
-    const {style, color} = this.props;
+    const {style, color, onPress} = this.props;
 
     let bgColor = "#e31676";
     let textcolor = "#fff";
@@ -14,20 +14,26 @@ class CircleButton extends React.Component {
     }
 
     return (
-      //配列で定義すると0から順に上書きされている
-      <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-        <Text style={[styles.circleButtonTitle, { color: textcolor }]}>{this.props.children}</Text>
-      </View>
+      <TouchableHighlight style={ [styles.container, style] } onPress={ onPress } underlayColor="transparent">
+        <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
+          <Text style={[styles.circleButtonTitle, { color: textcolor }]}>{this.props.children}</Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
 
 const styles = StyleSheet.create({
 
-  circleButton: {
+  container: {
+    width: 48,
+    height: 48,
     position: "absolute",
     bottom: 32,
     right: 32,
+  },
+
+  circleButton: {
     width: 48,
     height: 48,
     borderRadius: 24,
