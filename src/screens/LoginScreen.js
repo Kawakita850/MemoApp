@@ -13,7 +13,7 @@ class LoginScreen extends React.Component {
 
     .then((result) => {
       console.log('success!', result.user);
-      this.props.navigation.navigate("Home");
+      this.props.navigation.navigate("Home", { currentUser: result.user });
     })
 
     .catch((error) => {
