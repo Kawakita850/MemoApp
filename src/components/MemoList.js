@@ -2,8 +2,13 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableHighlight } from "react-native";
 
 class MemoList extends React.Component {
+
   //JSXは必ず1つのComponentを返さなければいけない
+
+  // プロパティの値が変化するとrender()は再度実行される
   render(){
+    console.log(this.props.memoList);
+
     return (
       <View style={styles.memoList}>
         <TouchableHighlight onPress={() => {this.props.navigation.navigate("MemoDetail")}}>

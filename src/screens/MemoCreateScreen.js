@@ -13,10 +13,13 @@ class MemoCreateScreen extends React.Component {
     // console.log(params);
 
     const db = firebase.firestore();
+
+    const { currentUser } = firebase.auth();
+
     /*
     `バッククオート`を用いて変数を動的に代入できる
     */
-    db.collection(`users/${ params.currentUser.uid }/memos`).add({
+    db.collection(`users/${ currentUser.uid }/memos`).add({
       body: this.state.body,
       ceatedOn: new Date(),
     })

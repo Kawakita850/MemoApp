@@ -4,8 +4,8 @@ import firebase from "firebase";
 
 class LoginScreen extends React.Component {
   state = {
-    email: "",
-    password: "",
+    email: "user1@example.com",
+    password: "password",
   }
 
   handleSubmit() {
@@ -13,7 +13,7 @@ class LoginScreen extends React.Component {
 
     .then((result) => {
       console.log('success!', result.user);
-      this.props.navigation.navigate("Home", { currentUser: result.user });
+      this.props.navigation.navigate("Home");
     })
 
     .catch((error) => {
