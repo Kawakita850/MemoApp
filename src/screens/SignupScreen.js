@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from "react-native";
 import firebase from "firebase";
+import { StackActions } from "react-navigation";
 
 class SignupScreen extends React.Component {
   state = {
@@ -13,7 +14,16 @@ class SignupScreen extends React.Component {
 
       .then((result) => {
         console.log('success!', result.user);
-        this.props.navigation.navigate("Home");
+
+        const resetAction = StackActions.reset({
+          // 配列の何番目に遷移しますか？
+          index: 0,
+          actions: [
+            { routeName: "Home" },
+          ],
+        });
+
+        this.props.navigation.dispatch(resetAction);
       })
 
       .catch((error) => {

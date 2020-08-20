@@ -13,6 +13,10 @@ class MemoDetailScreen extends React.Component {
     this.setState({ memo: params.memo })
   }
 
+  returnMemo(memo) {
+    this.setState({ memo });
+  }
+
   dateString(date) {
       // 存在しない場合は空文字列を返すと安全です
     if (date == null) { return "null"; }
@@ -45,7 +49,7 @@ class MemoDetailScreen extends React.Component {
           </Text>
         </View>
 
-        <CircleButton onPress={() => {this.props.navigation.navigate("MemoEdit", { memo })}} color = "white" style={ styles.editButton }>+</CircleButton>
+        <CircleButton onPress={() => {this.props.navigation.navigate("MemoEdit", { ...memo, returnMemo: this.returnMemo.bind(this) })}} color = "white" style={ styles.editButton }>+</CircleButton>
       </View>
     );
   }
